@@ -7,11 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -35,6 +38,11 @@ public class Lojas {
 	@Size(min=3, max = 100)
 	private String cnpj;
 	
+	@ManyToOne
+	@JsonIgnoreProperties("lojas")
+	private Produto produtos;
+	
+
 	public Lojas() {}
 
 	public Lojas(long id, @NotNull @Size(min = 3, max = 100) String nome, @NotNull Date dataFundacao,
@@ -76,6 +84,22 @@ public class Lojas {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
+	}
+	
+	public Date getDataFundacao() {
+		return dataFundacao;
+	}
+
+	public void setDataFundacao(Date dataFundacao) {
+		this.dataFundacao = dataFundacao;
+	}
+
+	public Produto getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(Produto produtos) {
+		this.produtos = produtos;
 	}
 
 	@Override
