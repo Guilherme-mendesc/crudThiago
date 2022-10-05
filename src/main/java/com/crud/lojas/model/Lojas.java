@@ -18,7 +18,6 @@ import javax.validation.constraints.Size;
 @Table
 public class Lojas {
 	
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,17 +29,17 @@ public class Lojas {
 	
 	@NotNull
 	@Temporal(TemporalType.DATE)
-	private Date dataFundacao;
+	private Date dataFundacao = new java.sql.Date(System.currentTimeMillis());
 	
 	@NotNull
 	@Size(min=3, max = 100)
 	private String cnpj;
 	
 	public Lojas() {}
-	
+
 	public Lojas(long id, @NotNull @Size(min = 3, max = 100) String nome, @NotNull Date dataFundacao,
 			@NotNull @Size(min = 3, max = 100) String cnpj) {
-
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.dataFundacao = dataFundacao;
@@ -63,12 +62,12 @@ public class Lojas {
 		this.nome = nome;
 	}
 
-	public Date getDataFundacao() {
+	public Date getdataFundacao() {
 		return dataFundacao;
 	}
 
-	public void setDataFundacao(Date dataFundacao) {
-		this.dataFundacao = dataFundacao;
+	public void setData(Date data) {
+		this.dataFundacao = data;
 	}
 
 	public String getCnpj() {
@@ -78,16 +77,12 @@ public class Lojas {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	
+
 	@Override
 	public String toString() {
-		return getId()+
-				getNome()+
-				sdf.format(dataFundacao)
-				;
+		return "Lojas [id=" + id + ", nome=" + nome + ", data=" + dataFundacao + ", cnpj=" + cnpj + "]";
 	}
-	
-	
+
 	
 	
 	
@@ -95,4 +90,15 @@ public class Lojas {
 	
 	
 
-}
+	}
+	
+	
+
+	
+	
+	
+	
+	
+	
+
+
