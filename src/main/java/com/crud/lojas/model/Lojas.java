@@ -26,7 +26,7 @@ public class Lojas {
 	
 	@NotNull
 	@Size(min=3, max = 100)
-	private String lojas;
+	private String nome;
 	
 	@NotNull
 	@Temporal(TemporalType.DATE)
@@ -38,9 +38,11 @@ public class Lojas {
 	
 	public Lojas() {}
 	
-	public Lojas(long id, String lojas, Date dataFundacao, String cnpj) {
+	public Lojas(long id, @NotNull @Size(min = 3, max = 100) String nome, @NotNull Date dataFundacao,
+			@NotNull @Size(min = 3, max = 100) String cnpj) {
+
 		this.id = id;
-		this.lojas = lojas;
+		this.nome = nome;
 		this.dataFundacao = dataFundacao;
 		this.cnpj = cnpj;
 	}
@@ -53,12 +55,12 @@ public class Lojas {
 		this.id = id;
 	}
 
-	public String getLojas() {
-		return lojas;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setLojas(String lojas) {
-		this.lojas = lojas;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public Date getDataFundacao() {
@@ -76,14 +78,18 @@ public class Lojas {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-
+	
 	@Override
 	public String toString() {
 		return getId()+
-				getLojas()+
+				getNome()+
 				sdf.format(dataFundacao)
 				;
 	}
+	
+	
+	
+	
 	
 	
 	
