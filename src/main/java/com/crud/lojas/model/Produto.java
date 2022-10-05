@@ -22,7 +22,7 @@ public class Produto {
 	private long id;
 	
 	@NotNull
-	private String nome;
+	private String nomeProdutos;
 	
 	@NotNull
 	private Double preco;
